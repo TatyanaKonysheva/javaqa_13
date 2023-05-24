@@ -1,5 +1,7 @@
 package ru.netolodgy.qa.javaqa_13;
 
+import java.util.Arrays;
+
 public class Epic extends Task {
     protected String[] subtasks;
 
@@ -9,7 +11,7 @@ public class Epic extends Task {
     }
 
     public String[] getSubtasks() {
-        return subtasks;
+        return Arrays.copyOf(subtasks, subtasks.length);
     }
 
     @Override

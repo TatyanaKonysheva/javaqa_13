@@ -1,5 +1,7 @@
 package ru.netolodgy.qa.javaqa_13;
 
+import java.util.Objects;
+
 public class Meeting extends Task {
 
     protected String topic;
