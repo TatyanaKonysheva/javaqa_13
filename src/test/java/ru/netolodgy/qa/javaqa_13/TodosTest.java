@@ -30,6 +30,7 @@ public class TodosTest {
         Assertions.assertArrayEquals(expected, actual);
     }
 
+    // Тест на метод поиска нахождения ровно одной задачи
     @Test
     public void shouldToSearchToTask() {
         SimpleTask simpleTask = new SimpleTask(5, "Позвонить родителям");
@@ -62,6 +63,35 @@ public class TodosTest {
         Task[] expected4 = {meeting};
         Task[] actual4 = todos.search("НетоБанка");
         Assertions.assertArrayEquals(expected4, actual4);
+    }
+
+    // Тест на метод поиска когда находится несколько задач и 0 задач
+    @Test
+    public void shouldToSearchToTaskSeveralAndZero() {
+        SimpleTask simpleTask = new SimpleTask(5, "Позвонить родителям");
+        String[] subtasks = {"Молоко", "Яйца", "Хлеб"};
+        Epic epic = new Epic(55, subtasks);
+        Meeting meeting = new Meeting(
+                555,
+                "Позвонить родителям",
+                "Приложение НетоБанка",
+                "Во вторник после обеда"
+        );
+
+        Todos todos = new Todos();
+        todos.add(simpleTask);
+        todos.add(epic);
+        todos.add(meeting);
+
+        // находится несколько задач (2шт)
+        Task[] expected1 = {simpleTask, meeting};
+        Task[] actual1 = todos.search("Позвонить");
+        Assertions.assertArrayEquals(expected1, actual1);
+
+        // Находиться 0 задач
+        Task[] expected2 = {};
+        Task[] actual2 = todos.search("кнопка");
+        Assertions.assertArrayEquals(expected2, actual2);
     }
 
     @Test
